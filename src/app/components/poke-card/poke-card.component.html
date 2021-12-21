@@ -1,0 +1,32 @@
+<div class="card pokeCard">
+  <img
+    src="../../../assets/img/slanted-gradient.svg"
+    class="pokeCard__bg"
+    alt="gradient-bg"
+  />
+  <div class="card-body text-center pokeCard__body">
+    <img
+      class="position-absolute border border-5 rounded-circle border-white bg-white pokeCard__sprite"
+      [src]="pokemon.image"
+      alt="poke-ball"
+    />
+    <strong class="card-title fs-3">{{ pokemon.name | titlecase }}</strong>
+    <p class="card-text text-muted fs-5">{{ pokemon.base_experience }} exp</p>
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-12 col-sm-4 d-flex flex-row flex-sm-column text-center justify-content-between justify-content-sm-start">
+        <span class="order-1 order-sm-0 text-muted fs-4 fs-sm-6">{{ getStatValue('attack') }}K</span>
+        <span class="order-0 order-sm-1 text-body fs-6">Ataque</span>
+      </div>
+      <div class="col-12 col-sm-4 d-flex flex-row flex-sm-column text-center justify-content-between justify-content-sm-start">
+        <span class="order-1 order-sm-0 text-muted fs-4 fs-sm-6">{{ getStatValue('special-attack') }}K</span>
+        <span class="order-0 order-sm-1 text-body fs-6">Ataque Especial</span>
+      </div>
+      <div class="col-12 col-sm-4 d-flex flex-row flex-sm-column text-center justify-content-between justify-content-sm-start">
+        <span class="order-1 order-sm-0 text-muted fs-4 fs-sm-6">{{ getStatValue('defense') }}K</span>
+        <span class="order-0 order-sm-1 text-body fs-6">Defensa</span>
+      </div>
+    </div>
+  </div>
+</div>

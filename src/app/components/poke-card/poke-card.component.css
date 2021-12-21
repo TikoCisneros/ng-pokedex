@@ -1,0 +1,47 @@
+.pokeCard {
+  max-width: 24rem;
+  box-shadow: 0 0 0.8rem rgba(10, 10, 10, 0.3);
+  border-radius: 0.5rem;
+}
+
+.pokeCard__bg {
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+}
+
+.pokeCard__sprite {
+  width: 12rem;
+  height: 12rem;
+  top: 10%;
+  right: 16%;
+}
+
+.pokeCard__body {
+  padding-top: 6rem;
+}
+
+@media (min-width: 360px) {
+  .pokeCard__sprite {
+    width: 15rem;
+    height: 15rem;
+    top: 12%;
+    right: 18%;
+  }
+
+  .pokeCard__body {
+    padding-top: 7rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .pokeCard__sprite {
+    width: 17rem;
+    height: 17rem;
+    top: 10%;
+    right: 14%;
+  }
+
+  .pokeCard__body {
+    padding-top: 8rem;
+  }
+}

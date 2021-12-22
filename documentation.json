@@ -16,8 +16,123 @@
     ],
     "injectables": [
         {
+            "name": "PokemonHttpService",
+            "id": "injectable-PokemonHttpService-366d75974155e39908d2a2ace387b774d86baba78f43e50a4fc3767b4aa3eaf49c95a7ea79eae70b2bc0a87dbed9beef2fa6a947bea0e7d9ac7ea327c7884748",
+            "file": "src/app/services/pokemon-http.service.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "getPokemonDetail",
+                    "args": [
+                        {
+                            "name": "pokemon",
+                            "type": "number | string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<PokemonDetail>",
+                    "typeParameters": [],
+                    "line": 26,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "pokemon",
+                            "type": "number | string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getPokemonList",
+                    "args": [
+                        {
+                            "name": "offset",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "defaultValue": "0"
+                        },
+                        {
+                            "name": "limit",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "defaultValue": "20"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<PokemonList[]>",
+                    "typeParameters": [],
+                    "line": 17,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "offset",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "defaultValue": "0",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "limit",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "defaultValue": "20",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient } from '@angular/common/http';\n\nimport { PokemonList } from '../models/pokemon.list';\nimport { Observable } from 'rxjs';\nimport { map } from 'rxjs/operators';\nimport { PokemonDetail } from '../models/pokemon.details';\n\nconst BASE_URL = 'https://pokeapi.co/api/v2/';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class PokemonHttpService {\n  constructor(private http: HttpClient) {}\n\n  getPokemonList(\n    offset: number = 0,\n    limit: number = 20\n  ): Observable<PokemonList[]> {\n    return this.http\n      .get<PokemonList[]>(`${BASE_URL}pokemon?limit=${limit}&offset=${offset}`)\n      .pipe(map((x: any) => x.results));\n  }\n\n  getPokemonDetail(pokemon: number | string): Observable<PokemonDetail> {\n    return this.http.get<PokemonDetail>(`${BASE_URL}pokemon/${pokemon}`);\n  }\n}\n\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 14,
+                "jsdoctags": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "injectable"
+        },
+        {
             "name": "PokemonService",
-            "id": "injectable-PokemonService-a67cd424469f89a5ae6d877632983530b92a63fc2a847f729fb55910259808240311c844f398850bcf3488891f323fcc070a2caceda249f45ca380c36c020990",
+            "id": "injectable-PokemonService-98589dc4fc2772274ee13d1c6f75586327e9f7c9733ecc19f69f0a14a8fa7bb0a3509c92a6f45895bb3456ec902538d312f967f5cfd3315c31554f21c21dd413",
             "file": "src/app/services/pokemon.service.ts",
             "properties": [],
             "methods": [],
@@ -25,15 +140,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\n\nconst POKE_API_URL = 'https://pokeapi.co/api/v2/';\nconst IMAGE_BASE_URL = 'https://cdn.traction.one/pokedex/pokemon/'; // from https://pokedevs.gitbook.io/pokedex/\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class PokemonService {\n\n  constructor() { }\n}\n",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [],
-                "line": 9
-            },
+            "sourceCode": "import { Injectable } from '@angular/core';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class PokemonService {\n\n}\n",
             "type": "injectable"
         }
     ],
@@ -41,13 +148,13 @@
     "interceptors": [],
     "classes": [
         {
-            "name": "PokemonDetail",
-            "id": "class-PokemonDetail-e072c6ffd8a7e0277e793ff30953b5fca37d362a454db0d428af3480df6c3298c76ee630c0611f0824b0cdb2afd8471342f702312032878c0d3b0d1b0d636a0c",
-            "file": "src/app/models/pokemon.details.ts",
+            "name": "Pokemon",
+            "id": "class-Pokemon-bc08fe9ace3b545e5aa283dcfa6a5b1b58a65ff97aab6e1f070020305f970790fa33401299d7b676bca7b54474550da8c170cdbfbcac40f365d2ce48a40d784a",
+            "file": "src/app/models/pokemon.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "export class PokemonDetail {\n  id: number;\n  name: string;\n  types: PokemonType[];\n  sprites: PokemonSprites;\n  image: string;\n\n  constructor() {\n    this.types = [];\n  }\n}\n\nclass PokemonType {\n  slot: number;\n  type: {\n    name: string;\n  };\n}\n\nclass PokemonSprites {\n  front_default: string;\n}\n",
+            "sourceCode": "export class Pokemon {\n  id: number;\n  name: string;\n  image: string;\n  base_experience: number;\n  stats: Stats[];\n\n  constructor() {}\n}\n\nclass Stats {\n  name: string;\n  base_stat: number;\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -57,6 +164,15 @@
                 "line": 6
             },
             "properties": [
+                {
+                    "name": "base_experience",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
                 {
                     "name": "id",
                     "deprecated": false,
@@ -73,7 +189,68 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
+                    "line": 4
+                },
+                {
+                    "name": "name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                },
+                {
+                    "name": "stats",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Stats[]",
+                    "optional": false,
+                    "description": "",
                     "line": 6
+                }
+            ],
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
+            "name": "PokemonDetail",
+            "id": "class-PokemonDetail-0db089ccc24b929a4cd2e9dac0a1a89c89a3c24a3ad2bd19d0a2413731693742bf307539d38170f2c62341df065a3c0d3ea87b67ee9e0a92bc3735a05b60a7e9",
+            "file": "src/app/models/pokemon.details.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "export class PokemonDetail {\n  id: number;\n  name: string;\n  types: PokemonType[];\n  sprites: PokemonSprites;\n  stats: PokemonStat[];\n  base_experience: number;\n\n  constructor() {\n    this.types = [];\n    this.stats = [];\n  }\n}\n\nclass PokemonType {\n  slot: number;\n  type: {\n    name: string;\n  };\n}\n\nclass PokemonSprites {\n  other: {\n    dream_world: {\n      front_default: string;\n    }\n  }\n}\n\nclass PokemonStat {\n  base_stat: number;\n  stat: {\n    name: string;\n  }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 7
+            },
+            "properties": [
+                {
+                    "name": "base_experience",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
                 },
                 {
                     "name": "name",
@@ -94,6 +271,15 @@
                     "line": 5
                 },
                 {
+                    "name": "stats",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "PokemonStat[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                },
+                {
                     "name": "types",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -111,22 +297,100 @@
             "hostListeners": []
         },
         {
-            "name": "PokemonSprites",
-            "id": "class-PokemonSprites-e072c6ffd8a7e0277e793ff30953b5fca37d362a454db0d428af3480df6c3298c76ee630c0611f0824b0cdb2afd8471342f702312032878c0d3b0d1b0d636a0c",
-            "file": "src/app/models/pokemon.details.ts",
+            "name": "PokemonList",
+            "id": "class-PokemonList-da9c75d5cbf9d806d9a27f0cf6ad6d828faaef34566a4c11d2ddba9fc358b12556cee883cfefa71858e23ef316ae669b8eec20cc1519ae37543baeedc028c66f",
+            "file": "src/app/models/pokemon.list.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "export class PokemonDetail {\n  id: number;\n  name: string;\n  types: PokemonType[];\n  sprites: PokemonSprites;\n  image: string;\n\n  constructor() {\n    this.types = [];\n  }\n}\n\nclass PokemonType {\n  slot: number;\n  type: {\n    name: string;\n  };\n}\n\nclass PokemonSprites {\n  front_default: string;\n}\n",
+            "sourceCode": "export class PokemonList {\n  name: string;\n  url: string;\n\n  constructor() {\n    this.name = '';\n    this.url = null;\n  }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 3
+            },
             "properties": [
                 {
-                    "name": "front_default",
+                    "name": "name",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 21
+                    "line": 2
+                },
+                {
+                    "name": "url",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                }
+            ],
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
+            "name": "PokemonSprites",
+            "id": "class-PokemonSprites-0db089ccc24b929a4cd2e9dac0a1a89c89a3c24a3ad2bd19d0a2413731693742bf307539d38170f2c62341df065a3c0d3ea87b67ee9e0a92bc3735a05b60a7e9",
+            "file": "src/app/models/pokemon.details.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "export class PokemonDetail {\n  id: number;\n  name: string;\n  types: PokemonType[];\n  sprites: PokemonSprites;\n  stats: PokemonStat[];\n  base_experience: number;\n\n  constructor() {\n    this.types = [];\n    this.stats = [];\n  }\n}\n\nclass PokemonType {\n  slot: number;\n  type: {\n    name: string;\n  };\n}\n\nclass PokemonSprites {\n  other: {\n    dream_world: {\n      front_default: string;\n    }\n  }\n}\n\nclass PokemonStat {\n  base_stat: number;\n  stat: {\n    name: string;\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "other",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type",
+                    "optional": false,
+                    "description": "",
+                    "line": 23
+                }
+            ],
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
+            "name": "PokemonStat",
+            "id": "class-PokemonStat-0db089ccc24b929a4cd2e9dac0a1a89c89a3c24a3ad2bd19d0a2413731693742bf307539d38170f2c62341df065a3c0d3ea87b67ee9e0a92bc3735a05b60a7e9",
+            "file": "src/app/models/pokemon.details.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "export class PokemonDetail {\n  id: number;\n  name: string;\n  types: PokemonType[];\n  sprites: PokemonSprites;\n  stats: PokemonStat[];\n  base_experience: number;\n\n  constructor() {\n    this.types = [];\n    this.stats = [];\n  }\n}\n\nclass PokemonType {\n  slot: number;\n  type: {\n    name: string;\n  };\n}\n\nclass PokemonSprites {\n  other: {\n    dream_world: {\n      front_default: string;\n    }\n  }\n}\n\nclass PokemonStat {\n  base_stat: number;\n  stat: {\n    name: string;\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "base_stat",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 31
+                },
+                {
+                    "name": "stat",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type",
+                    "optional": false,
+                    "description": "",
+                    "line": 32
                 }
             ],
             "methods": [],
@@ -138,12 +402,12 @@
         },
         {
             "name": "PokemonType",
-            "id": "class-PokemonType-e072c6ffd8a7e0277e793ff30953b5fca37d362a454db0d428af3480df6c3298c76ee630c0611f0824b0cdb2afd8471342f702312032878c0d3b0d1b0d636a0c",
+            "id": "class-PokemonType-0db089ccc24b929a4cd2e9dac0a1a89c89a3c24a3ad2bd19d0a2413731693742bf307539d38170f2c62341df065a3c0d3ea87b67ee9e0a92bc3735a05b60a7e9",
             "file": "src/app/models/pokemon.details.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "export class PokemonDetail {\n  id: number;\n  name: string;\n  types: PokemonType[];\n  sprites: PokemonSprites;\n  image: string;\n\n  constructor() {\n    this.types = [];\n  }\n}\n\nclass PokemonType {\n  slot: number;\n  type: {\n    name: string;\n  };\n}\n\nclass PokemonSprites {\n  front_default: string;\n}\n",
+            "sourceCode": "export class PokemonDetail {\n  id: number;\n  name: string;\n  types: PokemonType[];\n  sprites: PokemonSprites;\n  stats: PokemonStat[];\n  base_experience: number;\n\n  constructor() {\n    this.types = [];\n    this.stats = [];\n  }\n}\n\nclass PokemonType {\n  slot: number;\n  type: {\n    name: string;\n  };\n}\n\nclass PokemonSprites {\n  other: {\n    dream_world: {\n      front_default: string;\n    }\n  }\n}\n\nclass PokemonStat {\n  base_stat: number;\n  stat: {\n    name: string;\n  }\n}\n",
             "properties": [
                 {
                     "name": "slot",
@@ -152,7 +416,7 @@
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 14
+                    "line": 16
                 },
                 {
                     "name": "type",
@@ -161,7 +425,42 @@
                     "type": "literal type",
                     "optional": false,
                     "description": "",
-                    "line": 15
+                    "line": 17
+                }
+            ],
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
+            "name": "Stats",
+            "id": "class-Stats-bc08fe9ace3b545e5aa283dcfa6a5b1b58a65ff97aab6e1f070020305f970790fa33401299d7b676bca7b54474550da8c170cdbfbcac40f365d2ce48a40d784a",
+            "file": "src/app/models/pokemon.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "export class Pokemon {\n  id: number;\n  name: string;\n  image: string;\n  base_experience: number;\n  stats: Stats[];\n\n  constructor() {}\n}\n\nclass Stats {\n  name: string;\n  base_stat: number;\n}\n",
+            "properties": [
+                {
+                    "name": "base_stat",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
                 }
             ],
             "methods": [],
@@ -176,7 +475,7 @@
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-4eb1cff350929ffff60668860359b45335e88bee7d32a4aa8f812d52aec88730b080bc6813ec833d1fe39e8f8b51280dfd0d7c7557ecc64f19b0b7d7ae1cc11b",
+            "id": "component-AppComponent-33b5dd655510ad22f1ce4b118c684a7fa9a02a4c2723db7a1200a7871a2098bd721219238c7b2a43d4e143fbeecb5833ecfdd990a0fd88318adca95ef3942d44",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -196,17 +495,104 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
-                    "name": "title",
-                    "defaultValue": "'ng-pokedex'",
+                    "name": "isLoading",
+                    "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "string",
+                    "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 9
+                    "line": 18
+                },
+                {
+                    "name": "pokemons",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Pokemon[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
                 }
             ],
-            "methodsClass": [],
+            "methodsClass": [
+                {
+                    "name": "buildPokemonDetailObservable",
+                    "args": [
+                        {
+                            "name": "list",
+                            "type": "PokemonList[]",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable[]",
+                    "typeParameters": [],
+                    "line": 32,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "list",
+                            "type": "PokemonList[]",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getPokemonDetail",
+                    "args": [
+                        {
+                            "name": "list",
+                            "type": "PokemonList[]",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 36,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "list",
+                            "type": "PokemonList[]",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getPokemonPage",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 26,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 22,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -214,7 +600,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.css']\n})\nexport class AppComponent {\n  title = 'ng-pokedex';\n}\n",
+            "sourceCode": "import { map } from 'rxjs/operators';\nimport { Component, OnInit } from '@angular/core';\nimport { forkJoin, Observable } from 'rxjs';\n\nimport { PokemonService } from './services/pokemon.service';\nimport { PokemonList } from './models/pokemon.list';\nimport { PokemonDetail } from './models/pokemon.details';\nimport { Pokemon } from './models/pokemon';\nimport { PokemonHttpService } from './services/pokemon-http.service';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.css']\n})\nexport class AppComponent implements OnInit{\n  pokemons: Pokemon[] = [];\n  isLoading: boolean = false;\n\n  constructor(private pokemonHttpService: PokemonHttpService) {}\n\n  ngOnInit(): void {\n    this.getPokemonPage();\n  }\n\n  getPokemonPage() {\n    this.isLoading = true;\n    this.pokemonHttpService.getPokemonList()\n      .subscribe((list: PokemonList[]) => this.getPokemonDetail(list));\n  }\n\n  buildPokemonDetailObservable(list: PokemonList[]): Observable<PokemonDetail>[] {\n    return list.map(({ name }) => this.pokemonHttpService.getPokemonDetail(name));\n  }\n\n  getPokemonDetail(list: PokemonList[]) {\n    forkJoin([...this.buildPokemonDetailObservable(list)])\n      .pipe(\n        map<PokemonDetail[], Pokemon[]>((pokemonDetails) => {\n          return pokemonDetails.map(({\n            id,\n            name,\n            base_experience,\n            sprites: { other: { dream_world: { front_default } } },\n            stats,\n          }) => ({\n            id,\n            name,\n            base_experience,\n            image: front_default,\n            stats: stats.map(({ base_stat, stat: { name } }) => ({ name, base_stat })),\n          }))\n        })\n      )\n      .subscribe((pokemons: Pokemon[]) => {\n        this.isLoading = false;\n        this.pokemons = pokemons;\n      })\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -223,7 +609,36 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<div class=\"alert alert-primary\" role=\"alert\">\n  A simple primary alert—check it out!\n</div>\n<div class=\"d-grid gap-2 col-6 mx-auto\">\n  <button class=\"btn btn-primary\" type=\"button\">Button</button>\n  <button class=\"btn btn-primary\" type=\"button\">Button</button>\n</div>\n"
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "pokemonHttpService",
+                        "type": "PokemonHttpService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 18,
+                "jsdoctags": [
+                    {
+                        "name": "pokemonHttpService",
+                        "type": "PokemonHttpService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"container d-flex justify-content-center flex-wrap\">\n  <app-poke-card *ngFor=\"let pokemon of pokemons\" [pokemon]=\"pokemon\"></app-poke-card>\n</div>\n"
         },
         {
             "name": "ButtonComponent",
@@ -497,7 +912,7 @@
         },
         {
             "name": "PokeCardComponent",
-            "id": "component-PokeCardComponent-d806abe081ebd9f62fdd8dd17ab53c893832ee52683e82e9ed1e6fc1d91690c02d017f9d6e550b2e650717c1ac3ceac3f73cffa979b77906e8725f3c170ebd6a",
+            "id": "component-PokeCardComponent-cd93c12f5985dd41490a9c31f82d3f0f66c7460ac8ccdaa746c88128d08571750819a1d285ca4d9782245bf83ccdd2e88e4ba8c4283ef6a318f69a32a1f72ec5",
             "file": "src/app/components/poke-card/poke-card.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -513,17 +928,54 @@
                 "./poke-card.component.html"
             ],
             "viewProviders": [],
-            "inputsClass": [],
+            "inputsClass": [
+                {
+                    "name": "pokemon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "Pokemon",
+                    "decorators": []
+                }
+            ],
             "outputsClass": [],
             "propertiesClass": [],
             "methodsClass": [
+                {
+                    "name": "getStatValue",
+                    "args": [
+                        {
+                            "name": "statName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "number",
+                    "typeParameters": [],
+                    "line": 17,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "statName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
                 {
                     "name": "ngOnInit",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 12,
+                    "line": 14,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -535,11 +987,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-poke-card',\n  templateUrl: './poke-card.component.html',\n  styleUrls: ['./poke-card.component.css']\n})\nexport class PokeCardComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\nimport { Pokemon } from './../../models/pokemon';\n\n@Component({\n  selector: 'app-poke-card',\n  templateUrl: './poke-card.component.html',\n  styleUrls: ['./poke-card.component.css']\n})\nexport class PokeCardComponent implements OnInit {\n  @Input() pokemon!: Pokemon;\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n  getStatValue(statName: string): number {\n    const stat = this.pokemon.stats.find(({ name }) => name === statName);\n\n    if (!stat) {\n      return 0;\n    }\n\n    return stat.base_stat;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".pokemon {\n  width: 300px;\n}\n\n.pokemon__ball {\n  width: 150px;\n  height: auto;\n  opacity: 0.6;\n}\n\n.pokemon__sprite {\n  width: 80px;\n  height: auto;\n  bottom: 25%;\n  right: -10%;\n}\n",
+                    "data": ".pokeCard {\n  max-width: 24rem;\n  box-shadow: 0 0 0.8rem rgba(10, 10, 10, 0.3);\n  border-radius: 0.5rem;\n}\n\n.pokeCard__bg {\n  border-top-right-radius: 0.5rem;\n  border-top-left-radius: 0.5rem;\n}\n\n.pokeCard__sprite {\n  object-fit: scale-down;\n  width: 12rem;\n  height: 12rem;\n  top: 10%;\n  right: 16%;\n}\n\n.pokeCard__body {\n  padding-top: 6rem;\n}\n\n@media (min-width: 360px) {\n  .pokeCard__sprite {\n    width: 15rem;\n    height: 15rem;\n    top: 12%;\n    right: 18%;\n  }\n\n  .pokeCard__body {\n    padding-top: 7rem;\n  }\n}\n\n@media (min-width: 768px) {\n  .pokeCard {\n    max-width: 19rem;\n  }\n\n  .pokeCard__sprite {\n    width: 14rem;\n    height: 14rem;\n    top: 10%;\n    right: 13%;\n  }\n\n  .pokeCard__body {\n    padding-top: 8rem;\n  }\n}\n\n",
                     "styleUrl": "./poke-card.component.css"
                 }
             ],
@@ -550,24 +1002,24 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 8
+                "line": 10
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"card rounded-3 pokemon\">\n  <div class=\"card-body\">\n    <h5 class=\"card-title text-center\">Pokemon</h5>\n    <div class=\"d-flex\">\n      <div class=\"position-relative\">\n        <img\n          class=\"position-relative pokemon__ball\"\n          src=\"../../../assets/img/open-poke-ball.png\"\n          alt=\"poke-ball\"\n        />\n        <img\n          class=\"position-absolute pokemon__sprite\"\n          src=\"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/132.svg\"\n          alt=\"poke-img\"\n        />\n      </div>\n      <div class=\"d-flex flex-grow-1 flex-column align-items-center justify-content-center\">\n        <span>Venom</span>\n        <span>Poison</span>\n      </div>\n    </div>\n  </div>\n</div>\n"
+            "templateData": "<div class=\"card m-2 pokeCard\">\n  <img\n    src=\"../../../assets/img/slanted-gradient.svg\"\n    class=\"pokeCard__bg\"\n    alt=\"gradient-bg\"\n  />\n  <div class=\"card-body text-center pokeCard__body\">\n    <img\n      class=\"position-absolute border border-5 rounded-circle border-white bg-white pokeCard__sprite\"\n      [src]=\"pokemon.image\"\n      alt=\"poke-ball\"\n    />\n    <strong class=\"card-title fs-3\">{{ pokemon.name | titlecase }}</strong>\n    <p class=\"card-text text-muted fs-5\">{{ pokemon.base_experience }} exp</p>\n  </div>\n  <div class=\"card-footer\">\n    <div class=\"row\">\n      <div class=\"col-12 col-sm-4 d-flex flex-row flex-sm-column text-center justify-content-between justify-content-sm-start\">\n        <span class=\"order-1 order-sm-0 text-muted fs-4 fs-sm-6\">{{ getStatValue('attack') }}K</span>\n        <span class=\"order-0 order-sm-1 text-body fs-6\">Ataque</span>\n      </div>\n      <div class=\"col-12 col-sm-4 d-flex flex-row flex-sm-column text-center justify-content-between justify-content-sm-start\">\n        <span class=\"order-1 order-sm-0 text-muted fs-4 fs-sm-6\">{{ getStatValue('special-attack') }}K</span>\n        <span class=\"order-0 order-sm-1 text-body fs-6\">Ataque Especial</span>\n      </div>\n      <div class=\"col-12 col-sm-4 d-flex flex-row flex-sm-column text-center justify-content-between justify-content-sm-start\">\n        <span class=\"order-1 order-sm-0 text-muted fs-4 fs-sm-6\">{{ getStatValue('defense') }}K</span>\n        <span class=\"order-0 order-sm-1 text-body fs-6\">Defensa</span>\n      </div>\n    </div>\n  </div>\n</div>\n"
         }
     ],
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-b0bb343999c0401a2e3ecbec65490c5a76866396b25cae82ed79702c1d4e115033ea8c8ade9395518e8eba42217f2ec5d6c7a62f3d969b3ab2838fe206d56a66",
+            "id": "module-AppModule-678472da7ec3d1f272f617c395df4c317f5f3ca1f4dd321d8ae6f6cd82ca581e5cf1206380f1574b9b8cb2930be7bc05a2c8ad67a6e8c30e129a5b5b45c6136b",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { BrowserModule } from '@angular/platform-browser';\n\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\n\n@NgModule({\n  declarations: [\n    AppComponent\n  ],\n  imports: [\n    BrowserModule,\n    AppRoutingModule\n  ],\n  providers: [],\n  bootstrap: [AppComponent]\n})\nexport class AppModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { HttpClientModule } from '@angular/common/http';\n\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\nimport { PokeCardComponent } from './components/poke-card/poke-card.component';\n\n@NgModule({\n  declarations: [\n    AppComponent,\n    PokeCardComponent\n  ],\n  imports: [\n    BrowserModule,\n    HttpClientModule,\n    AppRoutingModule\n  ],\n  providers: [],\n  bootstrap: [AppComponent]\n})\nexport class AppModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -578,6 +1030,9 @@
                     "elements": [
                         {
                             "name": "AppComponent"
+                        },
+                        {
+                            "name": "PokeCardComponent"
                         }
                     ]
                 },
@@ -647,6 +1102,16 @@
     "miscellaneous": {
         "variables": [
             {
+                "name": "BASE_URL",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/services/pokemon-http.service.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string",
+                "defaultValue": "'https://pokeapi.co/api/v2/'"
+            },
+            {
                 "name": "context",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -664,7 +1129,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "() => ({\n  props: {},\n})"
+                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "environment",
@@ -685,16 +1150,6 @@
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\n  production: false\n}"
-            },
-            {
-                "name": "IMAGE_BASE_URL",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/services/pokemon.service.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "string",
-                "defaultValue": "'https://cdn.traction.one/pokedex/pokemon/'"
             },
             {
                 "name": "Large",
@@ -747,14 +1202,14 @@
                 "defaultValue": "Template.bind({})"
             },
             {
-                "name": "POKE_API_URL",
+                "name": "pokemon",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/services/pokemon.service.ts",
+                "file": "src/app/components/poke-card/poke-card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "string",
-                "defaultValue": "'https://pokeapi.co/api/v2/'"
+                "type": "",
+                "defaultValue": "new Pokemon()"
             },
             {
                 "name": "Primary",
@@ -824,12 +1279,34 @@
                 "deprecationMessage": "",
                 "type": "Story<Page>",
                 "defaultValue": "(args: Page) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/poke-card/poke-card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<PokeCardComponent>",
+                "defaultValue": "(args: PokeCardComponent) => ({\n  props: args,\n})"
             }
         ],
         "functions": [],
         "typealiases": [],
         "enumerations": [],
         "groupedVariables": {
+            "src/app/services/pokemon-http.service.ts": [
+                {
+                    "name": "BASE_URL",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/services/pokemon-http.service.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "defaultValue": "'https://pokeapi.co/api/v2/'"
+                }
+            ],
             "src/test.ts": [
                 {
                     "name": "context",
@@ -860,7 +1337,27 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "() => ({\n  props: {},\n})"
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "pokemon",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/poke-card/poke-card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "new Pokemon()"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/poke-card/poke-card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<PokeCardComponent>",
+                    "defaultValue": "(args: PokeCardComponent) => ({\n  props: args,\n})"
                 }
             ],
             "src/environments/environment.prod.ts": [
@@ -885,28 +1382,6 @@
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\n  production: false\n}"
-                }
-            ],
-            "src/app/services/pokemon.service.ts": [
-                {
-                    "name": "IMAGE_BASE_URL",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/services/pokemon.service.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "defaultValue": "'https://cdn.traction.one/pokedex/pokemon/'"
-                },
-                {
-                    "name": "POKE_API_URL",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/services/pokemon.service.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "defaultValue": "'https://pokeapi.co/api/v2/'"
                 }
             ],
             "src/stories/Button.stories.ts": [
@@ -1054,7 +1529,7 @@
                 "linktype": "component",
                 "name": "AppComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/2",
+                "coverageCount": "0/8",
                 "status": "low"
             },
             {
@@ -1063,7 +1538,7 @@
                 "linktype": "component",
                 "name": "PokeCardComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
@@ -1077,12 +1552,32 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/components/poke-card/poke-card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "pokemon",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/poke-card/poke-card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/models/pokemon.details.ts",
                 "type": "class",
                 "linktype": "classe",
                 "name": "PokemonDetail",
                 "coveragePercent": 0,
-                "coverageCount": "0/7",
+                "coverageCount": "0/8",
                 "status": "low"
             },
             {
@@ -1098,9 +1593,64 @@
                 "filePath": "src/app/models/pokemon.details.ts",
                 "type": "class",
                 "linktype": "classe",
+                "name": "PokemonStat",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/models/pokemon.details.ts",
+                "type": "class",
+                "linktype": "classe",
                 "name": "PokemonType",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/models/pokemon.list.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "PokemonList",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/models/pokemon.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "Pokemon",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/models/pokemon.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "Stats",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/services/pokemon-http.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "PokemonHttpService",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/services/pokemon-http.service.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "BASE_URL",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -1108,26 +1658,6 @@
                 "type": "injectable",
                 "linktype": "injectable",
                 "name": "PokemonService",
-                "coveragePercent": 0,
-                "coverageCount": "0/2",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/services/pokemon.service.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "IMAGE_BASE_URL",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/services/pokemon.service.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "POKE_API_URL",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

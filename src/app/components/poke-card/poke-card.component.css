@@ -10,6 +10,7 @@
 }
 
 .pokeCard__sprite {
+  object-fit: scale-down;
   width: 12rem;
   height: 12rem;
   top: 10%;
@@ -34,14 +35,19 @@
 }
 
 @media (min-width: 768px) {
+  .pokeCard {
+    max-width: 19rem;
+  }
+
   .pokeCard__sprite {
-    width: 17rem;
-    height: 17rem;
+    width: 14rem;
+    height: 14rem;
     top: 10%;
-    right: 14%;
+    right: 13%;
   }
 
   .pokeCard__body {
     padding-top: 8rem;
   }
 }
+

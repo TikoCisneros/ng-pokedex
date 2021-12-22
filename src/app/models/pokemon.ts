@@ -8,7 +8,7 @@ export class Pokemon {
   constructor() {}
 }
 
-interface Stats {
+class Stats {
   name: string;
   base_stat: number;
 }

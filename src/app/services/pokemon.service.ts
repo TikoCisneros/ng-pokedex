@@ -1,12 +1,26 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
-const POKE_API_URL = 'https://pokeapi.co/api/v2/';
-const IMAGE_BASE_URL = 'https://cdn.traction.one/pokedex/pokemon/'; // from https://pokedevs.gitbook.io/pokedex/
+import { Pokemon } from '../models/pokemon';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PokemonService {
+  private pokemons: Pokemon[] = [];
 
-  constructor() { }
+  pokemonsChanged = new Subject<Pokemon[]>();
+
+  private subscribeUpdatePokemons() {
+    this.pokemonsChanged.next(this.pokemons.slice());
+  }
+
+  getPokemons(): Pokemon[] {
+    return this.pokemons.slice();
+  }
+
+  addPokemons(list: Pokemon[]) {
+    this.pokemons = [ ...this.pokemons, ...list ];
+    this.subscribeUpdatePokemons();
+  }
 }

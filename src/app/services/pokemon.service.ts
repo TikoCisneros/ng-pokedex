@@ -9,10 +9,10 @@ import { Pokemon } from '../models/pokemon';
 export class PokemonService {
   private pokemons: Pokemon[] = [];
 
-  pokemonsChanged = new Subject<Pokemon[]>();
+  pokemonsChanges = new Subject<Pokemon[]>();
 
   private subscribeUpdatePokemons() {
-    this.pokemonsChanged.next(this.pokemons.slice());
+    this.pokemonsChanges.next(this.pokemons.slice());
   }
 
   getPokemons(): Pokemon[] {

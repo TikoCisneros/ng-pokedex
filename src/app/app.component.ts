@@ -1,11 +1,12 @@
 import { map } from 'rxjs/operators';
-import { Component, OnInit } from '@angular/core';
-import { forkJoin, Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { forkJoin, Observable, Subscription } from 'rxjs';
 
-import { PokemonService } from './services/pokemon.service';
 import { PokemonList } from './models/pokemon.list';
 import { PokemonDetail } from './models/pokemon.details';
 import { Pokemon } from './models/pokemon';
+
+import { PokemonService } from './services/pokemon.service';
 import { PokemonHttpService } from './services/pokemon-http.service';
 
 @Component({
@@ -13,14 +14,22 @@ import { PokemonHttpService } from './services/pokemon-http.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, OnDestroy{
+  private pokeChangeSub: Subscription;
+
   pokemons: Pokemon[] = [];
   isLoading: boolean = false;
 
-  constructor(private pokemonHttpService: PokemonHttpService) {}
+  constructor(private pokemonHttpService: PokemonHttpService, private pokemonService: PokemonService ) {}
 
   ngOnInit(): void {
+    this.pokeChangeSub = this.pokemonService.pokemonsChanges.subscribe((list: Pokemon[]) => this.pokemons = list);
+
     this.getPokemonPage();
+  }
+
+  ngOnDestroy(): void {
+    this.pokeChangeSub.unsubscribe();
   }
 
   getPokemonPage() {
@@ -54,7 +63,7 @@ export class AppComponent implements OnInit{
       )
       .subscribe((pokemons: Pokemon[]) => {
         this.isLoading = false;
-        this.pokemons = pokemons;
+        this.pokemonService.addPokemons(pokemons);
       })
   }
 }

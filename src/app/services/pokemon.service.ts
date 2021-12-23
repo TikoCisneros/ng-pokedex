@@ -23,4 +23,8 @@ export class PokemonService {
     this.pokemons = [ ...this.pokemons, ...list ];
     this.subscribeUpdatePokemons();
   }
+
+  getPokemonById(pokemonId: number): Pokemon | undefined {
+    return this.pokemons.find(({ id }) => id === pokemonId);
+  }
 }

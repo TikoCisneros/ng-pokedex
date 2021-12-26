@@ -1,9 +1,9 @@
 export class PokemonDetail {
   id: number;
   name: string;
-  types: PokemonType[];
-  sprites: PokemonSprites;
-  stats: PokemonStat[];
+  types: DetailType[];
+  sprites: DetailSprites;
+  stats: DetailStat[];
   base_experience: number;
 
   constructor() {
@@ -12,14 +12,14 @@ export class PokemonDetail {
   }
 }
 
-class PokemonType {
+class DetailType {
   slot: number;
   type: {
     name: string;
   };
 }
 
-class PokemonSprites {
+class DetailSprites {
   other: {
     dream_world: {
       front_default: string;
@@ -27,7 +27,7 @@ class PokemonSprites {
   }
 }
 
-class PokemonStat {
+class DetailStat {
   base_stat: number;
   stat: {
     name: string;

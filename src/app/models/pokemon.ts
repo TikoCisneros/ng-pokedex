@@ -3,12 +3,12 @@ export class Pokemon {
   name: string;
   image: string;
   base_experience: number;
-  stats: Stats[];
+  stats: Stat[];
 
   constructor() {}
 }
 
-class Stats {
+export class Stat {
   name: string;
   base_stat: number;
 }

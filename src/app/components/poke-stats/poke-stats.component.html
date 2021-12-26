@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title text-center">Pokemon stats</h4>
+    <div class="mb-3" *ngFor="let stat of stats; index as i;">
+      <span class="text-muted">{{ stat.name | titlecase | strNormalizer }}:</span>
+      <div
+        class="progress"
+        style="height: 1.5rem;">
+        <div
+          class="progress-bar"
+          [ngClass]="getBarColor(i)"
+          role="progressbar"
+          [ngStyle]="getBarStyle(stat.base_stat)"
+          aria-valuemin="0"
+          aria-valuemax="100">{{ stat.base_stat }}K</div>
+      </div>
+    </div>
+  </div>
+</div>
+

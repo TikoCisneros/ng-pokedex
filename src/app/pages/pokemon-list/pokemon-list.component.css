@@ -1,0 +1,9 @@
+.list_container {
+  padding-top: 9rem;
+}
+
+@media (min-width: 576px) {
+  .list_container {
+    padding-top: 6rem;
+  }
+}

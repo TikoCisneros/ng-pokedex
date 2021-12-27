@@ -1,0 +1,21 @@
+<nav class="navbar navbar-dark fixed-top bg-danger justify-content-between">
+  <div class="container py-1">
+    <a class="navbar-brand">
+      <img src="../../../assets/img/logo_pokemon.svg" width="140" alt="">
+    </a>
+    <form class="d-flex justify-content-end mt-3 mt-sm-0">
+      <label for="search" class="text-white fs-4 d-none d-sm-inline">Search:</label>
+      <input
+        class="form-control ms-0 ms-sm-3 me-3"
+        type="search"
+        name="search"
+        placeholder="Write a pokemon name"
+        aria-label="Search"
+        [(ngModel)]="searchText"
+      />
+      <button type="button" class="btn btn-warning" (click)="onSearchPress()">
+        <fa-icon [icon]="iconSearch"></fa-icon>
+      </button>
+    </form>
+  </div>
+</nav>

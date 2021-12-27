@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +16,7 @@ import { PokePillTypeComponent } from './components/poke-pill-type/poke-pill-typ
 import { PokeInfoComponent } from './components/poke-info/poke-info.component';
 
 import { DimensionsPipe } from './pipes/dimensions.pipe';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -26,12 +28,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     StrNormalizerPipe,
     PokePillTypeComponent,
     PokeInfoComponent,
-    DimensionsPipe
+    DimensionsPipe,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule,
     FontAwesomeModule
   ],
   providers: [],

@@ -61,7 +61,7 @@
     "injectables": [
         {
             "name": "PokemonHttpService",
-            "id": "injectable-PokemonHttpService-366d75974155e39908d2a2ace387b774d86baba78f43e50a4fc3767b4aa3eaf49c95a7ea79eae70b2bc0a87dbed9beef2fa6a947bea0e7d9ac7ea327c7884748",
+            "id": "injectable-PokemonHttpService-6a8bc2a7189ee40b99d7c8395a125f68c6820d94edd6885bf70158d94531ee51a3d4b8f7c64713ff6c559f7e0d1e2585b35f26b0aeb38e4167a7ba3e3cab1cc1",
             "file": "src/app/services/pokemon-http.service.ts",
             "properties": [],
             "methods": [
@@ -97,18 +97,18 @@
                     "name": "getPokemonList",
                     "args": [
                         {
-                            "name": "offset",
-                            "type": "number",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "defaultValue": "0"
-                        },
-                        {
                             "name": "limit",
                             "type": "number",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "20"
+                        },
+                        {
+                            "name": "offset",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "defaultValue": "0"
                         }
                     ],
                     "optional": false,
@@ -119,21 +119,21 @@
                     "deprecationMessage": "",
                     "jsdoctags": [
                         {
-                            "name": "offset",
-                            "type": "number",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "defaultValue": "0",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        },
-                        {
                             "name": "limit",
                             "type": "number",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "20",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "offset",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "defaultValue": "0",
                             "tagName": {
                                 "text": "param"
                             }
@@ -145,7 +145,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient } from '@angular/common/http';\n\nimport { PokemonList } from '../models/pokemon.list';\nimport { Observable } from 'rxjs';\nimport { map } from 'rxjs/operators';\nimport { PokemonDetail } from '../models/pokemon.details';\n\nconst BASE_URL = 'https://pokeapi.co/api/v2/';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class PokemonHttpService {\n  constructor(private http: HttpClient) {}\n\n  getPokemonList(\n    offset: number = 0,\n    limit: number = 20\n  ): Observable<PokemonList[]> {\n    return this.http\n      .get<PokemonList[]>(`${BASE_URL}pokemon?limit=${limit}&offset=${offset}`)\n      .pipe(map((x: any) => x.results));\n  }\n\n  getPokemonDetail(pokemon: number | string): Observable<PokemonDetail> {\n    return this.http.get<PokemonDetail>(`${BASE_URL}pokemon/${pokemon}`);\n  }\n}\n\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient } from '@angular/common/http';\n\nimport { PokemonList } from '../models/pokemon.list';\nimport { Observable } from 'rxjs';\nimport { map } from 'rxjs/operators';\nimport { PokemonDetail } from '../models/pokemon.details';\n\nconst BASE_URL = 'https://pokeapi.co/api/v2/';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class PokemonHttpService {\n  constructor(private http: HttpClient) {}\n\n  getPokemonList(\n    limit: number = 20,\n    offset: number = 0,\n  ): Observable<PokemonList[]> {\n    return this.http\n      .get<PokemonList[]>(`${BASE_URL}pokemon?limit=${limit}&offset=${offset}`)\n      .pipe(map((x: any) => x.results));\n  }\n\n  getPokemonDetail(pokemon: number | string): Observable<PokemonDetail> {\n    return this.http.get<PokemonDetail>(`${BASE_URL}pokemon/${pokemon}`);\n  }\n}\n\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -1187,11 +1187,11 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<button class=\"btn btn-primary\" type=\"button\" (click)=\"returnToList()\">Back</button>\n<div *ngIf=\"pokemon\">\n  <img\n    [src]=\"pokemon.image\"\n    alt=\"poke-image\"\n  />\n  <app-poke-stats [stats]=\"pokemon.stats\"></app-poke-stats>\n</div>\n"
+            "templateData": "<button class=\"btn btn-primary\" type=\"button\" (click)=\"returnToList()\">Back</button>\n<div class=\"container\" *ngIf=\"pokemon\">\n  <img\n    [src]=\"pokemon.image\"\n    alt=\"poke-image\"\n  />\n  <app-poke-stats [stats]=\"pokemon.stats\"></app-poke-stats>\n</div>\n"
         },
         {
             "name": "PokemonListComponent",
-            "id": "component-PokemonListComponent-0456410d2167d207248771d73e67dc98e8c945a9bf958e1bd2b3f051cdefdc45a70d12ff8234178436d04df73d0370baaee8ff4a687f600ffd6658d060321430",
+            "id": "component-PokemonListComponent-04cd2120cd55be27f0d0db25a0467eb6244cef11d67436bf446617b10ef96d93a7042f37db7765cf3490d9bdf674567b8cc8672df4749b904483987b05de7cb3",
             "file": "src/app/pages/pokemon-list/pokemon-list.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1257,7 +1257,7 @@
                     "optional": false,
                     "returnType": "Observable[]",
                     "typeParameters": [],
-                    "line": 47,
+                    "line": 55,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1285,7 +1285,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 51,
+                    "line": 59,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1343,7 +1343,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 76,
+                    "line": 84,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1366,7 +1366,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnDestroy, OnInit } from '@angular/core';\n\nimport { map } from 'rxjs/operators';\nimport { forkJoin, Observable, Subscription } from 'rxjs';\n\nimport { PokemonList } from '../../models/pokemon.list';\nimport { PokemonDetail } from '../../models/pokemon.details';\nimport { Pokemon } from '../../models/pokemon';\n\nimport { PokemonService } from '../../services/pokemon.service';\nimport { PokemonHttpService } from '../../services/pokemon-http.service';\nimport { Router } from '@angular/router';\n\n@Component({\n  selector: 'app-pokemon-list',\n  templateUrl: './pokemon-list.component.html',\n  styleUrls: ['./pokemon-list.component.css']\n})\nexport class PokemonListComponent implements OnInit , OnDestroy{\n  private pokeChangeSub: Subscription;\n\n  pokemons: Pokemon[] = [];\n  isLoading: boolean = false;\n\n  constructor(\n    private pokemonHttpService: PokemonHttpService,\n    private pokemonService: PokemonService,\n    private router: Router,\n  ) {}\n\n  ngOnInit(): void {\n    this.pokeChangeSub = this.pokemonService.pokemonsChanges.subscribe((list: Pokemon[]) => this.pokemons = list);\n\n    this.getPokemonPage();\n  }\n\n  ngOnDestroy(): void {\n    this.pokeChangeSub.unsubscribe();\n  }\n\n  getPokemonPage() {\n    this.isLoading = true;\n    this.pokemonHttpService.getPokemonList()\n      .subscribe((list: PokemonList[]) => this.getPokemonDetail(list));\n  }\n\n  buildPokemonDetailObservable(list: PokemonList[]): Observable<PokemonDetail>[] {\n    return list.map(({ name }) => this.pokemonHttpService.getPokemonDetail(name));\n  }\n\n  getPokemonDetail(list: PokemonList[]) {\n    forkJoin([...this.buildPokemonDetailObservable(list)])\n      .pipe(\n        map<PokemonDetail[], Pokemon[]>((pokemonDetails) => {\n          return pokemonDetails.map(({\n            id,\n            name,\n            base_experience,\n            sprites: { other: { dream_world: { front_default } } },\n            stats,\n          }) => ({\n            id,\n            name,\n            base_experience,\n            image: front_default,\n            stats: stats.map(({ base_stat, stat: { name } }) => ({ name, base_stat })),\n          }))\n        })\n      )\n      .subscribe((pokemons: Pokemon[]) => {\n        this.isLoading = false;\n        this.pokemonService.addPokemons(pokemons);\n      })\n  }\n\n  showPokemonDetails(id: number) {\n    this.router.navigate(['pokemon', id]);\n  }\n}\n",
+            "sourceCode": "import { Component, OnDestroy, OnInit } from '@angular/core';\n\nimport { map } from 'rxjs/operators';\nimport { forkJoin, Observable, Subscription } from 'rxjs';\n\nimport { PokemonList } from '../../models/pokemon.list';\nimport { PokemonDetail } from '../../models/pokemon.details';\nimport { Pokemon } from '../../models/pokemon';\n\nimport { PokemonService } from '../../services/pokemon.service';\nimport { PokemonHttpService } from '../../services/pokemon-http.service';\nimport { Router } from '@angular/router';\n\n@Component({\n  selector: 'app-pokemon-list',\n  templateUrl: './pokemon-list.component.html',\n  styleUrls: ['./pokemon-list.component.css']\n})\nexport class PokemonListComponent implements OnInit , OnDestroy{\n  private pokeChangeSub: Subscription;\n\n  pokemons: Pokemon[] = [];\n  isLoading: boolean = false;\n\n  constructor(\n    private pokemonHttpService: PokemonHttpService,\n    private pokemonService: PokemonService,\n    private router: Router,\n  ) {}\n\n  ngOnInit(): void {\n    this.pokeChangeSub = this.pokemonService.pokemonsChanges.subscribe((list: Pokemon[]) => this.pokemons = list);\n\n    this.getPokemonPage();\n  }\n\n  ngOnDestroy(): void {\n    this.pokeChangeSub.unsubscribe();\n  }\n\n  getPokemonPage() {\n    this.isLoading = true;\n\n    const pokemonData = this.pokemonService.getPokemons();\n\n    if (pokemonData.length > 0) {\n      this.pokemons = pokemonData;\n      return;\n    }\n\n    this.pokemonHttpService.getPokemonList(300)\n      .subscribe((list: PokemonList[]) => this.getPokemonDetail(list));\n  }\n\n  buildPokemonDetailObservable(list: PokemonList[]): Observable<PokemonDetail>[] {\n    return list.map(({ name }) => this.pokemonHttpService.getPokemonDetail(name));\n  }\n\n  getPokemonDetail(list: PokemonList[]) {\n    forkJoin([...this.buildPokemonDetailObservable(list)])\n      .pipe(\n        map<PokemonDetail[], Pokemon[]>((pokemonDetails) => {\n          return pokemonDetails.map(({\n            id,\n            name,\n            base_experience,\n            sprites: { other: { dream_world: { front_default } } },\n            stats,\n          }) => ({\n            id,\n            name,\n            base_experience,\n            image: front_default,\n            stats: stats.map(({ base_stat, stat: { name } }) => ({ name, base_stat })),\n          }))\n        })\n      )\n      .subscribe((pokemons: Pokemon[]) => {\n        this.isLoading = false;\n        this.pokemonService.addPokemons(pokemons);\n      })\n  }\n\n  showPokemonDetails(id: number) {\n    this.router.navigate(['pokemon', id]);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1549,7 +1549,7 @@
                 "args": [],
                 "line": 12
             },
-            "templateData": "<h3>Pokemon stats</h3>\n<div class=\"mb-3\" *ngFor=\"let stat of stats; index as i;\">\n  <span class=\"text-muted\">{{ stat.name | titlecase | strNormalizer }}:</span>\n  <div\n    class=\"progress\"\n    style=\"height: 1.5rem;\">\n    <div\n      class=\"progress-bar\"\n      [ngClass]=\"getBarColor(i)\"\n      role=\"progressbar\"\n      [ngStyle]=\"getBarStyle(stat.base_stat)\"\n      aria-valuemin=\"0\"\n      aria-valuemax=\"100\">{{ stat.base_stat }}K</div>\n  </div>\n</div>\n\n"
+            "templateData": "<div class=\"card\">\n  <div class=\"card-body\">\n    <h4 class=\"card-title text-center\">Pokemon stats</h4>\n    <div class=\"mb-3\" *ngFor=\"let stat of stats; index as i;\">\n      <span class=\"text-muted\">{{ stat.name | titlecase | strNormalizer }}:</span>\n      <div\n        class=\"progress\"\n        style=\"height: 1.5rem;\">\n        <div\n          class=\"progress-bar\"\n          [ngClass]=\"getBarColor(i)\"\n          role=\"progressbar\"\n          [ngStyle]=\"getBarStyle(stat.base_stat)\"\n          aria-valuemin=\"0\"\n          aria-valuemax=\"100\">{{ stat.base_stat }}K</div>\n      </div>\n    </div>\n  </div>\n</div>\n\n"
         }
     ],
     "modules": [

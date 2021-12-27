@@ -10,6 +10,8 @@ import { PokemonDetailComponent } from './pages/pokemon-detail/pokemon-detail.co
 import { PokeStatsComponent } from './components/poke-stats/poke-stats.component';
 
 import { StrNormalizerPipe } from './pipes/str-normalizer.pipe';
+import { PokePillTypeComponent } from './components/poke-pill-type/poke-pill-type.component';
+import { PokeInfoComponent } from './components/poke-info/poke-info.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { StrNormalizerPipe } from './pipes/str-normalizer.pipe';
     PokemonListComponent,
     PokemonDetailComponent,
     PokeStatsComponent,
-    StrNormalizerPipe
+    StrNormalizerPipe,
+    PokePillTypeComponent,
+    PokeInfoComponent
   ],
   imports: [
     BrowserModule,

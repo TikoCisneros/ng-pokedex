@@ -40,7 +40,15 @@ export class PokemonListComponent implements OnInit , OnDestroy{
 
   getPokemonPage() {
     this.isLoading = true;
-    this.pokemonHttpService.getPokemonList()
+
+    const pokemonData = this.pokemonService.getPokemons();
+
+    if (pokemonData.length > 0) {
+      this.pokemons = pokemonData;
+      return;
+    }
+
+    this.pokemonHttpService.getPokemonList(300)
       .subscribe((list: PokemonList[]) => this.getPokemonDetail(list));
   }
 

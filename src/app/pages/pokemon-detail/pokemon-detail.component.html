@@ -1,8 +1,29 @@
-<button class="btn btn-primary" type="button" (click)="returnToList()">Back</button>
-<div class="container" *ngIf="pokemon">
-  <img
-    [src]="pokemon.image"
-    alt="poke-image"
-  />
+<div class="container pt-3 pt-sm-0 detail_container" *ngIf="pokemon">
+  <p class="pt-5 pb-3 text-center detail_title">
+    {{ pokemon.name | titlecase }}
+    <span class="text-muted">#{{ pokemon.id }}</span>
+  </p>
+
+  <div class="row mb-3">
+    <div class="col text-center">
+      <div class="detail_row">
+        <img
+          class="detail_image"
+          [src]="pokemon.official_image"
+          alt="poke-image"
+        />
+      </div>
+    </div>
+    <div class="col align-self-center">
+      <app-poke-info [pokemon]="pokemon"></app-poke-info>
+    </div>
+  </div>
   <app-poke-stats [stats]="pokemon.stats"></app-poke-stats>
 </div>
+<button
+  class="btn btn-danger fixed-top ms-1 mt-1 ms-sm-5 mt-sm-5 float-left detail_btnCircle"
+  type="button"
+  (click)="returnToList()"
+>
+  <fa-icon [icon]="faBack"></fa-icon>
+</button>

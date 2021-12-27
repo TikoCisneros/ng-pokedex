@@ -14,6 +14,7 @@ import { PokePillTypeComponent } from './components/poke-pill-type/poke-pill-typ
 import { PokeInfoComponent } from './components/poke-info/poke-info.component';
 
 import { DimensionsPipe } from './pipes/dimensions.pipe';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DimensionsPipe } from './pipes/dimensions.pipe';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

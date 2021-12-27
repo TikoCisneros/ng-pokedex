@@ -2,6 +2,7 @@ export class Pokemon {
   id: number;
   name: string;
   image: string;
+  official_image: string;
   base_experience: number;
   stats: Stat[];
   types: string[];

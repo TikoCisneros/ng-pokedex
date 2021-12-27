@@ -66,12 +66,20 @@ export class PokemonListComponent implements OnInit , OnDestroy{
             base_experience,
             sprites: { other: { dream_world: { front_default } } },
             stats,
+            abilities,
+            types,
+            weight,
+            height
           }) => ({
             id,
             name,
             base_experience,
             image: front_default,
+            weight,
+            height,
             stats: stats.map(({ base_stat, stat: { name } }) => ({ name, base_stat })),
+            types: types.map(({ type: { name } }) => name),
+            abilities: abilities.map(({ ability: { name } }) => name)
           }))
         })
       )

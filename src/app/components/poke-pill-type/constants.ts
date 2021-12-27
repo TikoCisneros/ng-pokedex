@@ -7,6 +7,7 @@ const POKE_COLOR_TYPES = new Map<string, string>([
   ['rock', '#566573'],
   ['bug', '#239B56'],
   ['ghost', '#2471A3'],
+  ['fire', '#E74C3C'],
   ['steel', '#95A5A6'],
   ['water', '#0096FF'],
   ['grass', '#229954'],

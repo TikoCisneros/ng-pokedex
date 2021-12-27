@@ -4,7 +4,10 @@ export class Pokemon {
   image: string;
   base_experience: number;
   stats: Stat[];
-  types: Type[];
+  types: string[];
+  abilities: string[];
+  weight: number;
+  height: number;
 
   constructor() {}
 }
@@ -12,8 +15,4 @@ export class Pokemon {
 export class Stat {
   name: string;
   base_stat: number;
-}
-
-export class Type {
-  name: string;
 }

@@ -13,6 +13,8 @@ import { StrNormalizerPipe } from './pipes/str-normalizer.pipe';
 import { PokePillTypeComponent } from './components/poke-pill-type/poke-pill-type.component';
 import { PokeInfoComponent } from './components/poke-info/poke-info.component';
 
+import { DimensionsPipe } from './pipes/dimensions.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,8 @@ import { PokeInfoComponent } from './components/poke-info/poke-info.component';
     PokeStatsComponent,
     StrNormalizerPipe,
     PokePillTypeComponent,
-    PokeInfoComponent
+    PokeInfoComponent,
+    DimensionsPipe
   ],
   imports: [
     BrowserModule,

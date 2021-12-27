@@ -1,1 +1,33 @@
-<p>poke-info works!</p>
+<div class="card border-3 infoContainer">
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <h5>Base Experience</h5>
+        <span class="text-muted fs-5">{{ pokemon.base_experience }} exp</span>
+      </div>
+      <div class="col">
+        <h5>Height</h5>
+        <span class="text-muted fs-5">{{ pokemon.height | dimensions }} m</span>
+      </div>
+      <div class="col">
+        <h5>Weight</h5>
+        <span class="text-muted fs-5">{{ pokemon.weight | dimensions }} kg</span>
+      </div>
+    </div>
+    <h5 class="mt-2">Types</h5>
+    <div class="d-flex flex-wrap">
+      <app-poke-pill-type
+        *ngFor="let name of pokemon.types"
+        [typeName]="name"
+      ></app-poke-pill-type>
+    </div>
+    <h5 class="mt-2">Abilities</h5>
+    <div class="d-flex flex-wrap">
+      <span
+        *ngFor="let ability of pokemon.abilities"
+        class="badge rounded-pill bg-light text-dark p-2 border border-secondary fs-6 mx-1"
+        >{{ ability | titlecase | strNormalizer }}</span
+      >
+    </div>
+  </div>
+</div>

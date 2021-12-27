@@ -4,11 +4,15 @@ export class PokemonDetail {
   types: DetailType[];
   sprites: DetailSprites;
   stats: DetailStat[];
+  abilities: DetailAbilities[];
   base_experience: number;
+  weight: number;
+  height: number;
 
   constructor() {
     this.types = [];
     this.stats = [];
+    this.abilities = [];
   }
 }
 
@@ -30,6 +34,12 @@ class DetailSprites {
 class DetailStat {
   base_stat: number;
   stat: {
+    name: string;
+  }
+}
+
+class DetailAbilities {
+  ability: {
     name: string;
   }
 }

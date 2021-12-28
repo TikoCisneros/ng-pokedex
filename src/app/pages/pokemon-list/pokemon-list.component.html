@@ -1,5 +1,8 @@
-<app-nav-bar></app-nav-bar>
+<app-nav-bar (onSearch)="searchPokemonByName($event)"></app-nav-bar>
 <div class="container d-flex justify-content-center flex-wrap list_container">
+  <div *ngIf="isLoading" class="spinner-grow mt-5 list_loader" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
   <app-poke-card
     *ngFor="let pokemon of pokemons"
     [pokemon]="pokemon"

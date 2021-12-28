@@ -5,11 +5,13 @@ import { forkJoin, Observable, Subscription } from 'rxjs';
 
 import { PokemonList } from '../../models/pokemon.list';
 import { PokemonDetail } from '../../models/pokemon.details';
-import { Pokemon } from '../../models/pokemon';
+import { Pokemon } from 'src/app/models/pokemon';
 
 import { PokemonService } from '../../services/pokemon.service';
 import { PokemonHttpService } from '../../services/pokemon-http.service';
 import { Router } from '@angular/router';
+
+const POKEMON_NUMBER = 600;
 
 @Component({
   selector: 'app-pokemon-list',
@@ -45,10 +47,11 @@ export class PokemonListComponent implements OnInit , OnDestroy{
 
     if (pokemonData.length > 0) {
       this.pokemons = pokemonData;
+      this.isLoading = false;
       return;
     }
 
-    this.pokemonHttpService.getPokemonList(300)
+    this.pokemonHttpService.getPokemonList(POKEMON_NUMBER)
       .subscribe((list: PokemonList[]) => this.getPokemonDetail(list));
   }
 
@@ -92,5 +95,14 @@ export class PokemonListComponent implements OnInit , OnDestroy{
 
   showPokemonDetails(id: number) {
     this.router.navigate(['pokemon', id]);
+  }
+
+  searchPokemonByName(pokemonName: string) {
+    if(pokemonName.trim().length === 0) {
+      this.pokemons = this.pokemonService.getPokemons();
+      return;
+    }
+
+    this.pokemons = [...this.pokemons].filter(({ name }) => name.includes(pokemonName));
   }
 }

@@ -12,6 +12,7 @@
         placeholder="Write a pokemon name"
         aria-label="Search"
         [(ngModel)]="searchText"
+        (search)="onSearchPress()"
       />
       <button type="button" class="btn btn-warning" (click)="onSearchPress()">
         <fa-icon [icon]="iconSearch"></fa-icon>

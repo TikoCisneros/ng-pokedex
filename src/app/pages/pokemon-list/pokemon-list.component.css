@@ -2,6 +2,11 @@
   padding-top: 9rem;
 }
 
+.list_loader {
+  width: 5rem;
+  height: 5rem;
+}
+
 @media (min-width: 576px) {
   .list_container {
     padding-top: 6rem;

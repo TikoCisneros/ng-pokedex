@@ -18,7 +18,7 @@ export class NavBarComponent implements OnInit {
   }
 
   onSearchPress() {
-    if (this.onSearch && this.searchText.trim().length > 0) {
+    if (this.onSearch) {
       this.onSearch.emit(this.searchText);
     }
   }

@@ -1,9 +1,8 @@
-<div class="container pt-3 pt-sm-0 detail_container" *ngIf="pokemon">
-  <p class="pt-5 pb-3 text-center detail_title">
+<div class="container pt-5 pt-sm-0 detail_container" *ngIf="pokemon">
+  <p class="pt-1 pb-3 text-center detail_title">
     {{ pokemon.name | titlecase }}
     <span class="text-muted">#{{ pokemon.id }}</span>
   </p>
-
   <div class="row mb-3">
     <div class="col text-center">
       <div class="detail_row">
@@ -21,7 +20,7 @@
   <app-poke-stats [stats]="pokemon.stats"></app-poke-stats>
 </div>
 <button
-  class="btn btn-danger fixed-top ms-1 mt-1 ms-sm-5 mt-sm-5 float-left detail_btnCircle"
+  class="btn btn-danger fixed-top ms-1 mt-1 ms-sm-5 mt-sm-4 float-left detail_btnCircle"
   type="button"
   (click)="returnToList()"
 >
